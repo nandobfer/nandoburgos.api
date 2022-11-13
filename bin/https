@@ -24,7 +24,7 @@ app.set('port', port);
  */
 const server = https.createServer({
     key: fs.readFileSync('/home/ubuntu/letsencrypt/nandoburgos.dev/privkey.pem'),
-    cert: fs.readFileSync('/home/ubuntu/letsencrypt/nandoburgos.dev/cert.pem'),
+    cert: fs.readFileSync('/home/ubuntu/letsencrypt/nandoburgos.dev/fullchain.pem'),
 }, app);
 
 // var server = http.createServer(app);

@@ -1,0 +1,15 @@
+{
+    "server": {
+        "hostname": "127.0.0.1",
+        "port": 4000
+    },
+    "app":{
+        "database": {
+            "host": "localhost",
+            "port": "3306",
+            "user": "burgos",
+            "password": "mfux6xpj",
+            "database": "cheatsheet"
+        }
+    }
+}

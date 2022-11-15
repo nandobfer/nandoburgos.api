@@ -12,7 +12,7 @@ router.post('/', (request, response, next) => {
 	mysql.connect();
 	
 	mysql.query({
-		sql: `SELECT * FROM ${data.language} ;`,
+		sql: `SELECT * FROM ${data.language} order by category ;`,
 		timeout: 40000, // 40s
 		values: [
             data.language,

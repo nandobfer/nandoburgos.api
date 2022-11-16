@@ -7,7 +7,7 @@ const newMysql = require('../../src/database')
 /* GET users listing. */
 router.post('/', (request, response, next) => {    
 	const data = request.body;
-    const columns = ['title', 'description']
+    const columns = ['title', 'description', 'category']
     const category_char = data.title.split(':')
     let category = ''
 
@@ -21,7 +21,7 @@ router.post('/', (request, response, next) => {
 
 	
 	mysql.query({
-		sql: `INSERT INTO ${data.language} (${columns}) VALUES (?) ;`,
+		sql: `INSERT INTO ${data.language} (title, description, category) VALUES (?) ;`,
 		timeout: 40000, // 40s
 		values: [
             [data.title, data.description, category || null]

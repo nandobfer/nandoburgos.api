@@ -54,7 +54,7 @@ CREATE TABLE `git` (
   `description` text NOT NULL,
   `category` varchar(55) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `git` (
 
 LOCK TABLES `git` WRITE;
 /*!40000 ALTER TABLE `git` DISABLE KEYS */;
-INSERT INTO `git` VALUES (1,'remember the next git credentials for further logins','git config credential.helper store',NULL),(2,'remove python cached','git rm -r --cached __pycache__',NULL),(3,'force stash everything','git stash -u',NULL);
+INSERT INTO `git` VALUES (1,'remember the next git credentials for further logins','git config credential.helper store',NULL),(2,'remove python cached','git rm -r --cached __pycache__',NULL),(3,'force stash everything','git stash -u',NULL),(4,'configure git credencials','git config --global user.email \"you@example.com\"<br>git config --global user.name \"Your Name\"',NULL);
 /*!40000 ALTER TABLE `git` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +80,7 @@ CREATE TABLE `javascript` (
   `description` text NOT NULL,
   `category` varchar(55) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +89,7 @@ CREATE TABLE `javascript` (
 
 LOCK TABLES `javascript` WRITE;
 /*!40000 ALTER TABLE `javascript` DISABLE KEYS */;
-INSERT INTO `javascript` VALUES (2,'Install Node.js','https://nodejs.org/en/download/',NULL),(3,'React: init','npx create-react-app repository_name','react'),(4,'React: add default libs','yarn add formik axios node-sass react-router-dom react-loading react-text-mask react-burgos','react'),(5,'React: miraculous table lib','https://react-data-table-component.netlify.app/?path=/docs/getting-started-installation--page','react'),(6,'React Native: init','yarn create expo-app repository_name','react native'),(7,'React Native: navigation','yarn add @react-navigation/native @react-navigation/native-stack<br>npx expo install react-native-screens react-native-safe-area-context','react native'),(8,'React Native: local storage','expo install @react-native-async-storage/async-storage','react native'),(9,'Express-API: init','npx express-api repository_name','express-api'),(10,'Express-API: default libs','yarn add mysql cors','express-api'),(11,'React: Copy text to clipboard','navigator.clipboard.writeText(str_text)','react');
+INSERT INTO `javascript` VALUES (2,'Install Node.js','https://nodejs.org/en/download/',NULL),(3,'React: init','npx create-react-app repository_name','react'),(4,'React: add default libs','yarn add formik axios node-sass react-router-dom react-loading react-text-mask react-burgos','react'),(5,'React: miraculous table lib','https://react-data-table-component.netlify.app/?path=/docs/getting-started-installation--page','react'),(6,'React Native: init','yarn create expo-app repository_name','react native'),(7,'React Native: navigation','yarn add @react-navigation/native @react-navigation/native-stack<br>npx expo install react-native-screens react-native-safe-area-context','react native'),(8,'React Native: local storage','expo install @react-native-async-storage/async-storage','react native'),(9,'Express-API: init','npx express-api repository_name','express-api'),(10,'Express-API: default libs','yarn add mysql cors','express-api'),(11,'React: Copy text to clipboard','navigator.clipboard.writeText(str_text)','react'),(13,'React: text mask input','https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme','react');
 /*!40000 ALTER TABLE `javascript` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,7 +158,7 @@ CREATE TABLE `python` (
   `description` text NOT NULL,
   `category` varchar(55) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,8 +167,33 @@ CREATE TABLE `python` (
 
 LOCK TABLES `python` WRITE;
 /*!40000 ALTER TABLE `python` DISABLE KEYS */;
-INSERT INTO `python` VALUES (1,'Replace characters inside a string','string = string.replace(\"old_char\", \"new_char\")',NULL),(2,'\'Concatenate\' dictionary','d3 = dict(d1)<br>d3.update(d2)',NULL),(3,'String slicing','\'string\'[2:] = \'ring\'',NULL),(4,'Run a terminal command','os.system(\'command\')',NULL),(8,'Sleep','system.sleep(seconds)',NULL);
+INSERT INTO `python` VALUES (1,'Replace characters inside a string','string = string.replace(\"old_char\", \"new_char\")',NULL),(2,'\'Concatenate\' dictionary','d3 = dict(d1)<br>d3.update(d2)',NULL),(3,'String slicing','\'string\'[2:] = \'ring\'',NULL),(4,'Run a terminal command','os.system(\'command\')',NULL),(8,'Sleep','system.sleep(seconds)',NULL),(10,'meu cu','cuzinho',NULL);
 /*!40000 ALTER TABLE `python` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vim`
+--
+
+DROP TABLE IF EXISTS `vim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `vim` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(55) NOT NULL,
+  `description` text NOT NULL,
+  `category` varchar(55) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vim`
+--
+
+LOCK TABLES `vim` WRITE;
+/*!40000 ALTER TABLE `vim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vim` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -180,4 +205,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-15  4:16:55
+-- Dump completed on 2022-11-18 19:22:45

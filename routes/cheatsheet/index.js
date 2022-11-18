@@ -12,6 +12,9 @@ router.use('/get_sheet', get_sheet);
 const new_cheat = require('./new_cheat');
 router.use('/new_cheat', new_cheat);
 
+const delete_cheat = require('./delete_cheat');
+router.use('/delete_cheat', delete_cheat);
+
 const login = require('./login');
 router.use('/login', login);
 

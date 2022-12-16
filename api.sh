@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /home/ubuntu/nandoburgos.api
 
-while:
+while
 do
     yarn start
 done

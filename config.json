@@ -11,5 +11,14 @@
             "password": "mfux6xpj",
             "database": "cheatsheet"
         }
+    },
+    "movielist":{
+        "database": {
+            "host": "localhost",
+            "port": "3306",
+            "user": "burgos",
+            "password": "mfux6xpj",
+            "database": "movielist"
+        }
     }
 }

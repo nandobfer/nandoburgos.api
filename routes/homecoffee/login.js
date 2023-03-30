@@ -5,7 +5,6 @@ const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
 
-/* GET users listing. */
 router.post('/', async (request, response, next) => {    
 	const data = request.body;
 

@@ -9,4 +9,7 @@ router.get('/', (request, response) => {
 const login = require('./login');
 router.use('/login', login);
 
+const products = require('./products');
+router.use('/products', products);
+
 module.exports = router;

@@ -21,9 +21,7 @@ router.post('/', async (request, response, next) => {
                 {username: data.user},
                 {email: data.user},
             ],
-            AND: {
-                password: data.password
-            }
+            AND: { password: data.password }
         }
     })
 
@@ -47,6 +45,15 @@ router.post('/new', async (request, response, next) => {
     response.json(new_product)
 })
 
+router.post('/delete', async (request, response, next) => {    
+    const data = request.body
+
+    const deletion = await prisma.products.delete({ where: { id: data.id } })
+
+    response.json(deletion)
+
+})
+
 router.post('/update', async (request, response, next) => {    
     const data = request.body
 
@@ -57,9 +64,7 @@ router.post('/update', async (request, response, next) => {
             price: parseFloat(data.price.replace(/[^\d]+/g, '')),
             category: data.category
         },
-        where: {
-            id: data.id
-        }
+        where: { id: data.id }
     })
 
     response.json(product)

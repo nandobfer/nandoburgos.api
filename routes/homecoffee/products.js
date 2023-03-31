@@ -39,7 +39,8 @@ router.post('/new', async (request, response, next) => {
         data: {
             name: data.name,
             description: data.description,
-            price: parseFloat(data.price.replace(/[^\d]+/g, ''))
+            price: parseFloat(data.price.replace(/[^\d]+/g, '')),
+            category: data.category
         }
     })
 
@@ -53,7 +54,8 @@ router.post('/update', async (request, response, next) => {
         data: {
             name: data.name,
             description: data.description,
-            price: parseFloat(data.price.replace(/[^\d]+/g, ''))
+            price: parseFloat(data.price.replace(/[^\d]+/g, '')),
+            category: data.category
         },
         where: {
             id: data.id

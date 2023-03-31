@@ -21,4 +21,5 @@ model products {
     name        String  @db.VarChar(55)
     description String  @db.VarChar(512)
     price       Float
+    category    Int
 }

@@ -20,6 +20,6 @@ model products {
     id          Int     @id @default(autoincrement())
     name        String  @db.VarChar(55)
     description String  @db.VarChar(512)
-    price       Float
-    category    Int
+    price       Float   @default(0)
+    category    Int     @default(0)
 }

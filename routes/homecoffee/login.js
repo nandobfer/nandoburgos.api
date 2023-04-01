@@ -7,6 +7,7 @@ const prisma = new PrismaClient()
 
 router.post('/', async (request, response, next) => {    
 	const data = request.body;
+    data.user = data.user.toLowerCase()
 
     const user = await prisma.users.findFirst({
         where: {

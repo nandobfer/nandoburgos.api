@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE `products` ADD COLUMN `category` INTEGER NOT NULL DEFAULT 0,
-    MODIFY `price` DOUBLE NOT NULL DEFAULT 0;

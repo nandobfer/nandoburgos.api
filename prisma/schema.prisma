@@ -1,0 +1,23 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model languages {
+    id              Int         @id @default(autoincrement())
+    name            String
+    sheets          sheets[]
+}
+
+model sheets {
+    id              Int         @id @default(autoincrement())
+    title           String
+    code            String      @db.Text
+    keywords        String      @db.Text
+    language        languages   @relation(fields: [language_id], references: [id])
+    language_id     Int
+}

@@ -21,3 +21,11 @@ model sheets {
     language        languages   @relation(fields: [language_id], references: [id])
     language_id     Int
 }
+
+model users {
+    id              Int         @id @default(autoincrement())
+    username        String
+    password        String
+    name            String?
+    email           String?
+}

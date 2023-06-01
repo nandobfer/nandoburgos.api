@@ -8,4 +8,37 @@ router.get("/", async (request: Request, response: Response) => {
     response.json(sheets)
 })
 
+router.post("/add", async (request: Request, response: Response) => {
+    const data = request.body
+
+    const sheet = await prisma.sheets.create({
+        data: {
+            title: data.title,
+            code: data.code,
+            keywords: data.keywords,
+            language_id: data.language,
+        },
+        include: { language: true },
+    })
+
+    response.json(sheet)
+})
+
+router.post("/update", async (request: Request, response: Response) => {
+    const data = request.body
+
+    const sheet = await prisma.sheets.update({
+        where: { id: data.id },
+        data: {
+            title: data.title,
+            code: data.code,
+            keywords: data.keywords,
+            language_id: data.language,
+        },
+        include: { language: true },
+    })
+
+    response.json(sheet)
+})
+
 export default router

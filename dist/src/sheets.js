@@ -20,4 +20,31 @@ router.get("/", (request, response) => __awaiter(void 0, void 0, void 0, functio
     const sheets = yield prisma.sheets.findMany({ include: { language: true } });
     response.json(sheets);
 }));
+router.post("/add", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const data = request.body;
+    const sheet = yield prisma.sheets.create({
+        data: {
+            title: data.title,
+            code: data.code,
+            keywords: data.keywords,
+            language_id: data.language,
+        },
+        include: { language: true },
+    });
+    response.json(sheet);
+}));
+router.post("/update", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const data = request.body;
+    const sheet = yield prisma.sheets.update({
+        where: { id: data.id },
+        data: {
+            title: data.title,
+            code: data.code,
+            keywords: data.keywords,
+            language_id: data.language,
+        },
+        include: { language: true },
+    });
+    response.json(sheet);
+}));
 exports.default = router;

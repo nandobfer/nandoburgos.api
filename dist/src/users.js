@@ -12,15 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.router = void 0;
 const express_1 = __importDefault(require("express"));
-const languages_1 = __importDefault(require("./src/languages"));
-const sheets_1 = __importDefault(require("./src/sheets"));
-const users_1 = __importDefault(require("./src/users"));
-exports.router = express_1.default.Router();
-exports.router.get("/", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    response.json({ success: true });
+const client_1 = require("@prisma/client");
+const router = express_1.default.Router();
+const prisma = new client_1.PrismaClient();
+router.get("/", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield prisma.users.findMany();
+    response.json(users);
 }));
-exports.router.use("/languages", languages_1.default);
-exports.router.use("/sheets", sheets_1.default);
-exports.router.use("/user", users_1.default);
+router.post("/", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const data = request.body;
+    console.log(data);
+    const user = yield prisma.users.findFirst({
+        where: { OR: [{ username: data.user }, { email: data.user }], AND: { password: data.password } },
+    });
+    response.json(user);
+    console.log(user);
+}));
+exports.default = router;

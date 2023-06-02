@@ -41,4 +41,11 @@ router.post("/update", async (request: Request, response: Response) => {
     response.json(sheet)
 })
 
+router.post("/delete", async (request: Request, response: Response) => {
+    const data = request.body
+
+    const sheet = await prisma.sheets.delete({ where: { id: data.id } })
+    response.json(sheet)
+})
+
 export default router

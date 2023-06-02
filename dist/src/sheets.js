@@ -47,4 +47,9 @@ router.post("/update", (request, response) => __awaiter(void 0, void 0, void 0, 
     });
     response.json(sheet);
 }));
+router.post("/delete", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const data = request.body;
+    const sheet = yield prisma.sheets.delete({ where: { id: data.id } });
+    response.json(sheet);
+}));
 exports.default = router;

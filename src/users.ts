@@ -20,4 +20,23 @@ router.post("/", async (request: Request, response: Response) => {
     console.log(user)
 })
 
+router.post("/add", async (request: Request, response: Response) => {
+    const data = request.body
+
+    try {
+        const user = await prisma.users.create({
+            data: {
+                username: data.username,
+                password: data.password,
+                name: data.name,
+                email: data.email,
+            },
+        })
+
+        response.json(user)
+    } catch {
+        response.json({ error: true })
+    }
+})
+
 export default router

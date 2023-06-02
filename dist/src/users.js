@@ -29,4 +29,21 @@ router.post("/", (request, response) => __awaiter(void 0, void 0, void 0, functi
     response.json(user);
     console.log(user);
 }));
+router.post("/add", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const data = request.body;
+    try {
+        const user = yield prisma.users.create({
+            data: {
+                username: data.username,
+                password: data.password,
+                name: data.name,
+                email: data.email,
+            },
+        });
+        response.json(user);
+    }
+    catch (_a) {
+        response.json({ error: true });
+    }
+}));
 exports.default = router;

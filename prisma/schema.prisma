@@ -20,6 +20,8 @@ model sheets {
     keywords        String      @db.Text
     language        languages   @relation(fields: [language_id], references: [id])
     language_id     Int
+    user            users       @relation(fields: [user_id], references: [id])
+    user_id         Int         @default(1)
 }
 
 model users {
@@ -28,4 +30,5 @@ model users {
     password        String
     name            String?
     email           String?     @unique
+    sheets          sheets[]
 }

@@ -17,8 +17,9 @@ router.post("/add", async (request: Request, response: Response) => {
             code: data.code,
             keywords: data.keywords,
             language_id: data.language,
+            user_id: data.id,
         },
-        include: { language: true },
+        include: { language: true, user: true },
     })
 
     response.json(sheet)
@@ -35,7 +36,7 @@ router.post("/update", async (request: Request, response: Response) => {
             keywords: data.keywords,
             language_id: data.language,
         },
-        include: { language: true },
+        include: { language: true, user: true },
     })
 
     response.json(sheet)

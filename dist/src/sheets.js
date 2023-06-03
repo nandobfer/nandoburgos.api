@@ -28,8 +28,9 @@ router.post("/add", (request, response) => __awaiter(void 0, void 0, void 0, fun
             code: data.code,
             keywords: data.keywords,
             language_id: data.language,
+            user_id: data.id,
         },
-        include: { language: true },
+        include: { language: true, user: true },
     });
     response.json(sheet);
 }));
@@ -43,7 +44,7 @@ router.post("/update", (request, response) => __awaiter(void 0, void 0, void 0, 
             keywords: data.keywords,
             language_id: data.language,
         },
-        include: { language: true },
+        include: { language: true, user: true },
     });
     response.json(sheet);
 }));

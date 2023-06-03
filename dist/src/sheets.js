@@ -17,7 +17,7 @@ const client_1 = require("@prisma/client");
 const router = express_1.default.Router();
 const prisma = new client_1.PrismaClient();
 router.get("/", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    const sheets = yield prisma.sheets.findMany({ include: { language: true } });
+    const sheets = yield prisma.sheets.findMany({ include: { language: true, user: true } });
     response.json(sheets);
 }));
 router.post("/add", (request, response) => __awaiter(void 0, void 0, void 0, function* () {

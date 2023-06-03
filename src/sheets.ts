@@ -17,7 +17,7 @@ router.post("/add", async (request: Request, response: Response) => {
             code: data.code,
             keywords: data.keywords,
             language_id: data.language,
-            user_id: data.id,
+            user_id: data.user_id,
         },
         include: { language: true, user: true },
     })

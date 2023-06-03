@@ -28,7 +28,7 @@ router.post("/add", (request, response) => __awaiter(void 0, void 0, void 0, fun
             code: data.code,
             keywords: data.keywords,
             language_id: data.language,
-            user_id: data.id,
+            user_id: data.user_id,
         },
         include: { language: true, user: true },
     });

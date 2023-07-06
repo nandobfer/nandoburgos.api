@@ -22,12 +22,10 @@ router.get("/", (request, response) => __awaiter(void 0, void 0, void 0, functio
 }));
 router.post("/", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const data = request.body;
-    console.log(data);
     const user = yield prisma.users.findFirst({
         where: { OR: [{ username: data.user }, { email: data.user }], AND: { password: data.password } },
     });
     response.json(user);
-    console.log(user);
 }));
 router.post("/add", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const data = request.body;

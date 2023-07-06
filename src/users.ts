@@ -10,14 +10,12 @@ router.get("/", async (request: Request, response: Response) => {
 
 router.post("/", async (request: Request, response: Response) => {
     const data = request.body
-    console.log(data)
 
     const user = await prisma.users.findFirst({
         where: { OR: [{ username: data.user }, { email: data.user }], AND: { password: data.password } },
     })
 
     response.json(user)
-    console.log(user)
 })
 
 router.post("/add", async (request: Request, response: Response) => {

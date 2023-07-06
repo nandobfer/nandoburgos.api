@@ -1,12 +1,6 @@
 import { WebSocketServer, WebSocket } from "ws"
 import { users } from "@prisma/client"
 
-interface Client {
-    user: users
-    connection: WebSocket
-    player: any
-}
-
 export let clients: Client[] = []
 
 export const wsServer = new WebSocketServer({ noServer: true })

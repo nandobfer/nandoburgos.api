@@ -12,7 +12,8 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const https_1 = __importDefault(require("https"));
 const http_1 = __importDefault(require("http"));
 const fs_1 = __importDefault(require("fs"));
-const socket_1 = require("./src/websocket/socket");
+const socket_io_1 = require("socket.io");
+const io_1 = require("./src/websocket/io");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
@@ -27,23 +28,17 @@ try {
         cert: fs_1.default.readFileSync("/etc/letsencrypt/live/app.agenciaboz.com.br/cert.pem", "utf8"),
         ca: fs_1.default.readFileSync("/etc/letsencrypt/live/app.agenciaboz.com.br/chain.pem", "utf8"),
     }, app);
+    const io = new socket_io_1.Server(server, { cors: { origin: "*" } });
+    io.on("connection", io_1.onConnection);
     server.listen(port, () => {
         console.log(`[server]: Server is running at https ${port}`);
-    });
-    server.on("upgrade", (request, socket, head) => {
-        socket_1.wsServer.handleUpgrade(request, socket, head, (socket) => {
-            socket_1.wsServer.emit("connection", socket, request);
-        });
     });
 }
 catch (_a) {
     const server = http_1.default.createServer(app);
+    const io = new socket_io_1.Server(server, { cors: { origin: "*" } });
+    io.on("connection", io_1.onConnection);
     server.listen(port, () => {
         console.log(`[server]: Server is running at http ${port}`);
-    });
-    server.on("upgrade", (request, socket, head) => {
-        socket_1.wsServer.handleUpgrade(request, socket, head, (socket) => {
-            socket_1.wsServer.emit("connection", socket, request);
-        });
     });
 }

@@ -32,9 +32,10 @@ const onConnection = (socket) => {
     });
     socket.on("player:sync", (data) => {
         const player = data.player;
+        const user = data.user;
         const client = getClient(socket);
         client.player = player;
-        socket.emit("player:sync", listClients().filter((client) => client.player.id != player.id));
+        socket.emit("player:sync", listClients().filter((client) => client.user.id != user.id));
     });
 };
 exports.onConnection = onConnection;

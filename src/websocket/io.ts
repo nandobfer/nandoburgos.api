@@ -43,12 +43,13 @@ export const onConnection = (socket: Socket) => {
 
     socket.on("player:sync", (data) => {
         const player: Player = data.player
+        const user: users = data.user
 
         const client = getClient(socket)
         client.player = player
         socket.emit(
             "player:sync",
-            listClients().filter((client) => client.player.id != player.id)
+            listClients().filter((client) => client.user.id != user.id)
         )
     })
 }

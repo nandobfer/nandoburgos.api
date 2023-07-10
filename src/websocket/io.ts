@@ -1,55 +1,38 @@
 import { users } from "@prisma/client"
 import { Socket } from "socket.io"
+import { handleUi } from "./rooms"
+import { handleGame } from "./game"
 
-export let clients: Client[] = []
+export let clientList: Client[] = []
 
-const getClient = (socket: Socket) => {
-    const client = clients.filter((client) => client.connection == socket)[0]
-    return client
+const gameClient = (client: Client) => {
+    const gameClient: GameClient = { player: client.player, user: client.user }
+    return gameClient
 }
 
-const listClients = () => {
-    return clients.map((client) => ({ player: client.player, user: client.user }))
+const clients: ClientListBag = {
+    get: (socket: Socket) => clientList.filter((client) => client.connection == socket)[0],
+    convert: (client: Client) => gameClient(client),
+    list: () => {
+        return clientList.map((client) => ({ player: client.player, user: client.user }))
+    },
+    add: (client: Client) => clientList.push(client),
+    remove: (client: Client) => {
+        clientList = clientList.filter((item) => item.connection != client)
+    },
 }
 
 export const onConnection = (socket: Socket) => {
     console.log("new io connection")
+    handleUi(socket, clients)
+    handleGame(socket, clients)
 
-    // there is no handling in client yet
     socket.on("disconnect", () => {
-        const client = getClient(socket)
-        console.log(`${client.user.name} disconnected`)
+        const client = clients.get(socket)
+        console.log(`${client?.user?.name} disconnected`)
 
-        clients = clients.filter((client) => client.connection != socket)
+        clients.remove(client)
 
         socket.broadcast.emit("player:disconnect", { player: client.player, user: client.user })
-    })
-
-    socket.on("player:new", (data) => {
-        const player: Player = data.player
-        const user: users = data.user
-
-        const client: Client = {
-            connection: socket,
-            player,
-            user,
-        }
-
-        socket.broadcast.emit("player:new", { player, user })
-        socket.emit("players", listClients())
-
-        clients.push(client)
-    })
-
-    socket.on("player:sync", (data) => {
-        const player: Player = data.player
-        const user: users = data.user
-
-        const client = getClient(socket)
-        client.player = player
-        socket.emit(
-            "player:sync",
-            listClients().filter((client) => client.user.id != user.id)
-        )
     })
 }

@@ -1,5 +1,19 @@
-declare interface Client {
+declare interface GameClient {
     user: users
-    connection: WebSocket | Socket
     player: Player
+}
+
+declare interface Client extends GameClient {
+    connection: WebSocket | Socket
+}
+
+declare interface ClientListBag {
+    get: (socket: Socket) => Client
+    convert: (client: Client) => GameClient
+    list: () => {
+        player: Player
+        user: users
+    }[]
+    add: (client: Client) => number
+    remove: (client: Client) => void
 }

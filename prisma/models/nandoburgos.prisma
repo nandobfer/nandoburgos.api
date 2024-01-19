@@ -1,0 +1,30 @@
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model languages {
+    id              Int         @id @default(autoincrement())
+    name            String
+    sheets          sheets[]
+}
+
+model sheets {
+    id              Int         @id @default(autoincrement())
+    title           String
+    code            String      @db.Text
+    keywords        String      @db.Text
+    language        languages   @relation(fields: [language_id], references: [id])
+    language_id     Int
+    user            users       @relation(fields: [user_id], references: [id])
+    user_id         Int         @default(1)
+}
+
+model users {
+    id              Int         @id @default(autoincrement())
+    username        String      @unique
+    password        String
+    name            String?
+    email           String?     @unique
+    sheets          sheets[]
+}

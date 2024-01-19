@@ -1,0 +1,8 @@
+{
+    "mixers": [
+        {
+            "input": ["prisma/base.prisma", "prisma/models/nandoburgos.prisma", "prisma/models/gyhstore.prisma"],
+            "output": "prisma/schema.prisma"
+        }
+    ]
+}

@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "npx tsc",
         "start": "node dist/index.js",
-        "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+        "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+        "prismix": "npx prismix && prisma format"
     },
     "repository": {
         "type": "git",
@@ -40,6 +41,7 @@
         "concurrently": "^8.0.1",
         "nodemon": "^2.0.22",
         "prisma": "^4.15.0",
+        "prismix": "^1.0.22",
         "typescript": "^5.0.4"
     }
 }

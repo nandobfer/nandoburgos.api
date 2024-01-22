@@ -1,7 +1,7 @@
 import { Socket, Server as SocketIoServer } from "socket.io"
 import { Server as HttpServer } from "http"
 import { Server as HttpsServer } from "https"
-import gyhstore from "./gyhstore"
+import gyhstore from "../gyhstore/io"
 
 let io: SocketIoServer | null = null
 

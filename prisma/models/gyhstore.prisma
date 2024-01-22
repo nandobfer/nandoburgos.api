@@ -8,5 +8,25 @@ model Gyh_user {
     id              Int         @id @default(autoincrement())
     name            String
     email           String
+    username        String
     password        String
+}
+
+model Gyh_product {
+    id              Int         @id @default(autoincrement())
+    name            String
+    description     String      @db.Text @default("")
+    code            String
+    price           Float
+
+    cover           String      @db.Text @default("")
+    images          Gyh_image[]
+}
+
+model Gyh_image {
+    id              Int         @id @default(autoincrement())
+    url             String      @db.Text
+
+    product_id      Int
+    product         Gyh_product @relation(fields: [product_id], references: [id], onDelete: Cascade)
 }

@@ -43,13 +43,14 @@ model Gyh_user {
 }
 
 model Gyh_product {
-  id          Int         @id @default(autoincrement())
+  id          Int            @id @default(autoincrement())
   name        String
-  description String      @default("") @db.Text
+  description String         @default("") @db.Text
   code        String
   price       Float
-  cover       String      @default("") @db.Text
-  images      Gyh_image[] @relation(name: "Gyh_imageToGyh_product")
+  cover       String         @default("") @db.Text
+  images      Gyh_image[]    @relation(name: "Gyh_imageToGyh_product")
+  categories  Gyh_category[] @relation(name: "Gyh_categoryToGyh_product")
 }
 
 model Gyh_image {
@@ -57,4 +58,11 @@ model Gyh_image {
   url        String      @db.Text
   product_id Int
   product    Gyh_product @relation(name: "Gyh_imageToGyh_product", fields: [product_id], references: [id], onDelete: Cascade)
+}
+
+model Gyh_category {
+  id       Int           @id @default(autoincrement())
+  name     String
+  cover    String        @db.Text
+  products Gyh_product[] @relation(name: "Gyh_categoryToGyh_product")
 }

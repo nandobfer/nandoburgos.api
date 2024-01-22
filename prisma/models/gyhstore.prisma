@@ -3,7 +3,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-
 model Gyh_user {
     id              Int         @id @default(autoincrement())
     name            String
@@ -21,6 +20,7 @@ model Gyh_product {
 
     cover           String      @db.Text @default("")
     images          Gyh_image[]
+    categories      Gyh_category[]
 }
 
 model Gyh_image {
@@ -29,4 +29,12 @@ model Gyh_image {
 
     product_id      Int
     product         Gyh_product @relation(fields: [product_id], references: [id], onDelete: Cascade)
+}
+
+model Gyh_category {
+    id          Int         @id @default(autoincrement())
+    name        String
+    cover       String      @db.Text
+
+    products    Gyh_product[]
 }

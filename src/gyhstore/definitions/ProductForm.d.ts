@@ -8,6 +8,7 @@ export interface ProductForm {
     images?: Image[]
 
     urls?: string[]
+    categories: number[] // lista de ids
 }
 
 export interface Image {

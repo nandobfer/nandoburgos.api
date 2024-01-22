@@ -3,7 +3,7 @@ import { ProductForm } from "../definitions/ProductForm"
 
 const prisma = new PrismaClient()
 
-const include = { images: true }
+const include = { images: true, categories: true }
 
 const list = async () => await prisma.gyh_product.findMany({ include })
 
@@ -16,7 +16,8 @@ const create = async (data: ProductForm, urls: string[], cover?: string) =>
             description: data.description,
             cover,
 
-            images: { create: urls.map((url) => ({ url })) }
+            images: { create: urls.map((url) => ({ url })) },
+            categories: { connect: data.categories.map((id) => ({ id })) }
         },
         include
     })
@@ -32,7 +33,8 @@ const update = async (id: number, data: ProductForm, urls: string[], cover?: str
             price: data.price,
             cover,
 
-            images: { create: urls.map((url) => ({ url })) }
+            images: { create: urls.map((url) => ({ url })) },
+            categories: { set: [], connect: data.categories.map((id) => ({ id })) }
         },
         include
     })

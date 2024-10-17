@@ -1,0 +1,35 @@
+services:
+  api:
+    image: nandoburgos/nandoburgos.api
+    container_name: nandoburgos.api
+    environment:
+      - PORT=4103
+      - DATABASE_URL=mysql://boz:password@agencyboz.com:3306/nandoburgos
+    expose:
+      - "4103"
+    networks:
+      - webnet
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 256M
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - api
+    networks:
+      - webnet
+    restart: unless-stopped
+
+networks:
+  webnet:

@@ -4,7 +4,7 @@ services:
     container_name: nandoburgos.api
     environment:
       - PORT=4103
-      - DATABASE_URL=mysql://boz:password@agencyboz.com:3306/nandoburgos
+      - DATABASE_URL=mysql://boz:Ewhblt69%21%40%23@boz.app.br:3306/nandoburgos
     ports:
       - "4103:4103"
     networks:

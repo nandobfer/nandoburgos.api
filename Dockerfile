@@ -43,9 +43,5 @@ COPY --from=build /app/dist ./dist
 # Expose the application's port
 EXPOSE 4103
 
-# Set environment variables if needed
-ENV DATABASE_URL="mysql://boz:Ewhblt69%21%40%23@agencyboz.com:3306/nandoburgos"
-ENV PORT=4103
-
 # Start the application
 CMD ["node", "dist/index.js"]

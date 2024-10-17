@@ -14,7 +14,7 @@ RUN npm install --ignore-scripts
 COPY . .
 
 # Generate Prisma client and format schema
-RUN npm run prismix
+RUN npx prisma generate
 
 # Build the TypeScript application
 RUN npm run build
